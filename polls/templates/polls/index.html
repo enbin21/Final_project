@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Polls List{% endblock %}
+
+{% block content %}
+<h4>Polls List</h4></p>
+<p></p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Poll</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if latest_question_list %}
+                {% for question in latest_question_list %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a></td>
+                </tr>
+                {% endfor %}
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock %}
